@@ -45,5 +45,20 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "${clickedStd.name} : ${clickedStd.phoneNum}", Toast.LENGTH_SHORT).show()
         }
 
+//        한 명의 학생을 오래 클릭하면 => 해당 학생 삭제
+        binding.studentListView.setOnItemLongClickListener { adapterView, view, position, l ->
+
+            // 오래 클릭된 학생 => (목록에서) 삭제
+            mStudentList.removeAt(position)
+
+            // 어댑터에게 통보
+            mStdAdapter.notifyDataSetChanged()
+
+            // LongClick 이벤트는 Boolean 타입의 리턴값을 받도록 되어 있음
+
+            return@setOnItemLongClickListener true
+        }
+
+
     }
 }
