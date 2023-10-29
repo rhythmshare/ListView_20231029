@@ -26,12 +26,16 @@ class StudentAdapter(
     //    완성한 inf를 이용해서 => xml을 가져와주는 함수
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
+        // tempRow 역할 : 리스트뷰의 재사용성에서 나오는 null 가능성을 대비하기 위한 임시 함수
         var tempRow = convertView
 
+//       tempRow가 null 상태라면 (재사용 할 row가 아직 안 그려짐)
         if (tempRow == null) {
+//          xml을 inflate 해서 (그려줌) => tempRow에 담아준다.
             tempRow = inf.inflate(R.layout.student_list_item, null)
         }
-
+//        if문 빠져 나온 후 : 원래 null이면? => 새로 그려서 넣어줌. null 아니면? 있는 것 활용
+//        tempRow에 null 상태일 가능성 제거
         val row = tempRow!!
 
 //    xml을 그려낸 row 객체 내부에서, 텍스트뷰 등을 찾아 실제 데이터로 연동
